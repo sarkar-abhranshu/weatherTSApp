@@ -1,6 +1,6 @@
 # Weather TypeScript App 🌤️
 
-A modern, responsive weather application built with React, TypeScript, and Tailwind CSS. Get real-time weather information for any city worldwide using the OpenWeatherMap API.
+A modern, responsive weather application built with React, TypeScript, and Tailwind CSS. Get real-time weather information for any city worldwide using the OpenWeatherMap API. Built to practice typescript.
 
 ## ✨ Features
 
@@ -42,12 +42,12 @@ A modern, responsive weather application built with React, TypeScript, and Tailw
    ```
 
 3. **Set up environment variables**
-   
+
    Create a `.env` file in the root directory:
    ```env
    VITE_OPENWEATHER_API_KEY=your_api_key_here
    ```
-   
+
    Get your free API key from [OpenWeatherMap](https://openweathermap.org/api)
 
 4. **Start the development server**
@@ -56,14 +56,12 @@ A modern, responsive weather application built with React, TypeScript, and Tailw
    ```
 
 5. **Open your browser**
-   
+
    Navigate to `http://localhost:5173`
 
 ## 📝 Available Scripts
 
 - `pnpm dev` - Start development server
-- `pnpm build` - Build for production
-- `pnpm preview` - Preview production build
 - `pnpm lint` - Run ESLint
 
 ## 🏗️ Project Structure
@@ -134,22 +132,6 @@ Configured with React-specific rules and TypeScript support.
 | Variable | Description | Required |
 |----------|-------------|----------|
 | `VITE_OPENWEATHER_API_KEY` | Your OpenWeatherMap API key | Yes |
-
-## 🚀 Deployment
-
-1. **Build the project**
-   ```bash
-   pnpm build
-   ```
-
-2. **Deploy the `dist` folder** to your preferred hosting service:
-   - Vercel
-   - Netlify
-   - GitHub Pages
-   - AWS S3
-   - Any static hosting service
-
-3. **Set environment variables** in your hosting platform's settings
 
 ## 🤝 Contributing
 
