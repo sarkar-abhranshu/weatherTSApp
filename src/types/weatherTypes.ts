@@ -8,6 +8,8 @@ export interface WeatherData {
         pressure: number;
         humidity: number;
         temp: number;
+        temp_min: number;
+        temp_max: number;
     };
     sys: {
         sunrise: number;
@@ -22,6 +24,10 @@ export interface WeatherData {
     ];
     wind: {
         speed: number;
+    };
+    name: string;
+    locationInfo?: {
+        name: string;
     };
 }
 

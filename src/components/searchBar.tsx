@@ -15,13 +15,22 @@ export const SearchBar: React.FC<Props> = ({ onSearch }) => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form
+            onSubmit={handleSubmit}
+            className="flex flex-col sm:flex-row gap-3 w-full max-w-md mx-auto"
+        >
             <input
                 value={city}
                 onChange={(e) => setCity(e.target.value)}
                 placeholder="Enter city"
+                className="flex-1 px-4 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent shadow-sm transition-all duration-200 placeholder-gray-200"
             />
-            <button type="submit">Search</button>
+            <button
+                type="submit"
+                className="px-6 hover:bg-blue-600 hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 shadow-sm transition-all duration-200 font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+                Search
+            </button>
         </form>
     );
 };
