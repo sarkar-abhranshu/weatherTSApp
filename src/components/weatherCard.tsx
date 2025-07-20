@@ -40,7 +40,7 @@ export const WeatherCard: React.FC<Props> = ({ data }) => {
     };
 
     return (
-        <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 shadow-xl border border-white/20 text-white max-w-md w-full">
+        <div className="bg-blue-700/10 backdrop-blur-md rounded-2xl p-6 shadow-xl border border-white/20 text-white max-w-md w-full">
             {/* Header */}
             <div className="text-center mb-6">
                 <h2 className="text-2xl font-bold mb-2">
