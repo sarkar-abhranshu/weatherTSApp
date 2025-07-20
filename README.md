@@ -20,6 +20,10 @@ A modern, responsive weather application built with React, TypeScript, and Tailw
 - **API**: OpenWeatherMap API
 - **Linting**: ESLint
 
+### Installation
+Visit site to check it out.
+https://weather-app-six-plum-53.vercel.app/
+
 ## 🚀 Getting Started
 
 ### Prerequisites
