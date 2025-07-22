@@ -1,6 +1,40 @@
 import type { WeatherData } from "../types/weatherTypes";
 
-const API_KEY = import.meta.env.VITE_OPENWEATHER_API_KEY;
+// Cache interface for browser-side caching
+interface CacheEntry {
+    data: WeatherData;
+    timestamp: number;
+}
+
+class WeatherCache {
+    private cache = new Map<string, CacheEntry>();
+    private readonly CACHE_DURATION = 10 * 60 * 1000; // 10 minutes
+
+    get(key: string): WeatherData | null {
+        const entry = this.cache.get(key);
+        if (!entry) return null;
+
+        if (Date.now() - entry.timestamp > this.CACHE_DURATION) {
+            this.cache.delete(key);
+            return null;
+        }
+
+        return entry.data;
+    }
+
+    set(key: string, data: WeatherData): void {
+        this.cache.set(key, {
+            data,
+            timestamp: Date.now()
+        });
+    }
+
+    clear(): void {
+        this.cache.clear();
+    }
+}
+
+const weatherCache = new WeatherCache();
 
 export interface WeatherApiParams {
     lat: number;
@@ -12,63 +46,64 @@ export async function fetchWeatherData(
     params: WeatherApiParams,
 ): Promise<WeatherData> {
     const { lat, lon, units = "metric" } = params;
+    
+    // Create cache key
+    const cacheKey = `coords:${lat}:${lon}:${units}`;
+    
+    // Check browser cache first
+    const cached = weatherCache.get(cacheKey);
+    if (cached) {
+        console.log('Browser cache hit for coordinates:', lat, lon);
+        return cached;
+    }
 
-    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=${units}&appid=${API_KEY}`;
-
-    const response = await fetch(url);
+    // Call our server API instead of OpenWeather directly
+    const response = await fetch(`/api/weather?lat=${lat}&lon=${lon}&units=${units}`);
 
     if (!response.ok) {
-        if (response.status === 401) {
-            throw new Error(
-                "Invalid API key. Please check your OpenWeather API key.",
-            );
-        }
-        throw new Error(
-            `Weather API error: ${response.status} ${response.statusText}`,
-        );
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.error || `API error: ${response.status} ${response.statusText}`);
     }
 
     const data = await response.json();
-    console.log("API Response:", data);
+    
+    // Cache in browser
+    weatherCache.set(cacheKey, data);
+    console.log('Data fetched and cached for coordinates:', lat, lon);
+    
     return data as WeatherData;
 }
 
 export async function getWeatherByCity(city: string): Promise<WeatherData> {
-    if (!API_KEY) {
-        throw new Error(
-            "API key not found. Please set VITE_OPENWEATHER_API_KEY in your .env file.",
-        );
+    // Create cache key
+    const cacheKey = `city:${city}:metric`;
+    
+    // Check browser cache first
+    const cached = weatherCache.get(cacheKey);
+    if (cached) {
+        console.log('Browser cache hit for city:', city);
+        return cached;
     }
-    const geoUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${API_KEY}`;
 
-    const geoResponse = await fetch(geoUrl);
-    if (!geoResponse.ok) {
-        if (geoResponse.status === 401) {
-            throw new Error(
-                "Invalid API key for geocoding. Please check your OpenWeather API key.",
-            );
+    // Call our server API instead of OpenWeather directly
+    const response = await fetch(`/api/weather?city=${encodeURIComponent(city)}&units=metric`);
+
+    if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        if (response.status === 404) {
+            throw new Error(errorData.error || `City "${city}" not found`);
         }
-        throw new Error(
-            `Geocoding API error: ${geoResponse.status} ${geoResponse.statusText}`,
-        );
+        throw new Error(errorData.error || `API error: ${response.status} ${response.statusText}`);
     }
 
-    const geoData = await geoResponse.json();
-    if (!geoData.length) {
-        throw new Error(`City "${city}" not found`);
-    }
-
-    const { lat, lon, name } = geoData[0];
-
-    const weatherData = await fetchWeatherData({
-        lat,
-        lon,
-        units: "metric",
-    });
-
-    weatherData.locationInfo = {
-        name,
-    };
-
-    return weatherData;
+    const data = await response.json();
+    
+    // Cache in browser
+    weatherCache.set(cacheKey, data);
+    console.log('Data fetched and cached for city:', city);
+    
+    return data as WeatherData;
 }
+
+// Export cache instance for potential manual cache management
+export { weatherCache };

@@ -12,6 +12,7 @@ export interface WeatherData {
         temp_max: number;
     };
     sys: {
+        country: string;
         sunrise: number;
         sunset: number;
     };

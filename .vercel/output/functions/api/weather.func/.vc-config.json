@@ -1,0 +1,27 @@
+{
+  "handler": "api/weather.js",
+  "runtime": "nodejs22.x",
+  "architecture": "x86_64",
+  "environment": {},
+  "launcherType": "Nodejs",
+  "shouldAddHelpers": true,
+  "shouldAddSourcemapSupport": true,
+  "awsLambdaHandler": "",
+  "useWebApi": false,
+  "filePathMap": {
+    "node_modules/ioredis": "node_modules/ioredis",
+    "node_modules/.pnpm/ioredis@5.6.1/node_modules/denque": "node_modules/.pnpm/ioredis@5.6.1/node_modules/denque",
+    "node_modules/.pnpm/ioredis@5.6.1/node_modules/redis-errors": "node_modules/.pnpm/ioredis@5.6.1/node_modules/redis-errors",
+    "node_modules/.pnpm/ioredis@5.6.1/node_modules/standard-as-callback": "node_modules/.pnpm/ioredis@5.6.1/node_modules/standard-as-callback",
+    "node_modules/.pnpm/ioredis@5.6.1/node_modules/cluster-key-slot": "node_modules/.pnpm/ioredis@5.6.1/node_modules/cluster-key-slot",
+    "node_modules/.pnpm/ioredis@5.6.1/node_modules/lodash.defaults": "node_modules/.pnpm/ioredis@5.6.1/node_modules/lodash.defaults",
+    "node_modules/.pnpm/ioredis@5.6.1/node_modules/lodash.isarguments": "node_modules/.pnpm/ioredis@5.6.1/node_modules/lodash.isarguments",
+    "node_modules/.pnpm/ioredis@5.6.1/node_modules/redis-parser": "node_modules/.pnpm/ioredis@5.6.1/node_modules/redis-parser",
+    "node_modules/.pnpm/ioredis@5.6.1/node_modules/debug": "node_modules/.pnpm/ioredis@5.6.1/node_modules/debug",
+    "node_modules/.pnpm/ioredis@5.6.1/node_modules/@ioredis/commands": "node_modules/.pnpm/ioredis@5.6.1/node_modules/@ioredis/commands",
+    "node_modules/.pnpm/redis-parser@3.0.0/node_modules/redis-errors": "node_modules/.pnpm/redis-parser@3.0.0/node_modules/redis-errors",
+    "node_modules/.pnpm/debug@4.4.1/node_modules/ms": "node_modules/.pnpm/debug@4.4.1/node_modules/ms",
+    "node_modules/.pnpm/node_modules/supports-color": "node_modules/.pnpm/node_modules/supports-color",
+    "node_modules/.pnpm/supports-color@7.2.0/node_modules/has-flag": "node_modules/.pnpm/supports-color@7.2.0/node_modules/has-flag"
+  }
+}
