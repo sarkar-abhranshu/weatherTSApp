@@ -10,6 +10,7 @@ A modern, responsive weather application built with React, TypeScript, and Tailw
 - **Modern Stack**: Built with React 19, Vite, and Tailwind CSS
 - **Error Handling**: Comprehensive error handling for API failures and invalid cities
 - **Clean Architecture**: Well-organized component structure and API layer
+- **In-memory Caching**: In-memory client side and server-side caching to improve performance
 
 ## 🛠️ Tech Stack
 
@@ -19,10 +20,6 @@ A modern, responsive weather application built with React, TypeScript, and Tailw
 - **Package Manager**: pnpm
 - **API**: OpenWeatherMap API
 - **Linting**: ESLint
-
-### Installation
-Visit site to check it out.
-https://weather-app-six-plum-53.vercel.app/
 
 ## 🚀 Getting Started
 
@@ -49,48 +46,19 @@ https://weather-app-six-plum-53.vercel.app/
 
    Create a `.env` file in the root directory:
    ```env
-   VITE_OPENWEATHER_API_KEY=your_api_key_here
+   OPENWEATHER_API_KEY=your_api_key_here
    ```
 
    Get your free API key from [OpenWeatherMap](https://openweathermap.org/api)
 
 4. **Start the development server**
    ```bash
-   pnpm dev
+   vercel dev
    ```
 
 5. **Open your browser**
 
-   Navigate to `http://localhost:5173`
-
-## 📝 Available Scripts
-
-- `pnpm dev` - Start development server
-- `pnpm lint` - Run ESLint
-
-## 🏗️ Project Structure
-
-```
-weatherTSApp/
-├── public/                 # Static assets
-├── src/
-│   ├── api/               # API layer
-│   │   └── weather.ts     # Weather API functions
-│   ├── components/        # React components
-│   │   ├── searchBar.tsx  # City search component
-│   │   └── weatherCard.tsx # Weather display component
-│   ├── types/             # TypeScript type definitions
-│   │   └── weatherTypes.ts
-│   ├── assets/            # Images and other assets
-│   ├── App.tsx           # Main application component
-│   ├── main.tsx          # Application entry point
-│   └── index.css         # Global styles
-├── index.html            # HTML template
-├── package.json          # Project dependencies
-├── tailwind.config.js    # Tailwind CSS configuration
-├── tsconfig.json         # TypeScript configuration
-└── vite.config.ts        # Vite configuration
-```
+   Navigate to `http://localhost:3000`
 
 ## 🌐 API Integration
 
@@ -98,10 +66,9 @@ This app uses the OpenWeatherMap API to fetch:
 
 - Current weather conditions
 - Temperature (with feels-like temperature)
-- Humidity and atmospheric pressure
+- Humidity
 - Wind speed
 - Weather descriptions and icons
-- Sunrise and sunset times
 
 The API integration includes:
 - Geocoding to convert city names to coordinates
@@ -113,8 +80,6 @@ The API integration includes:
 - **Gradient Background**: Beautiful blue gradient background
 - **Responsive Layout**: Works seamlessly on all device sizes
 - **Weather Cards**: Clean, card-based design for weather information
-- **Error States**: User-friendly error messages with icons
-- **Loading States**: Smooth user experience during API calls
 - **Search Interface**: Intuitive city search functionality
 
 ## 🔧 Configuration
@@ -135,7 +100,7 @@ Configured with React-specific rules and TypeScript support.
 
 | Variable | Description | Required |
 |----------|-------------|----------|
-| `VITE_OPENWEATHER_API_KEY` | Your OpenWeatherMap API key | Yes |
+| `OPENWEATHER_API_KEY` | Your OpenWeatherMap API key | Yes |
 
 ## 🤝 Contributing
 
