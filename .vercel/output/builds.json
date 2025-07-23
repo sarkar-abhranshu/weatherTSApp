@@ -12,11 +12,11 @@
       "requirePath": "C:\\Users\\abhra\\AppData\\Roaming\\npm\\node_modules\\vercel\\node_modules\\@vercel\\node\\dist\\index",
       "apiVersion": 3,
       "use": "@vercel/node@5.3.6",
-      "src": "api/weather.ts",
+      "src": "api/weather.js",
       "config": {
         "zeroConfig": true,
         "functions": {
-          "api/**/*.ts": {
+          "api/weather.js": {
             "runtime": "@vercel/node@5.3.6"
           }
         }

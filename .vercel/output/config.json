@@ -5,11 +5,6 @@
       "handle": "filesystem"
     },
     {
-      "src": "^/api(?:/(.*))$",
-      "dest": "/api/$1",
-      "check": true
-    },
-    {
       "src": "^/api(/.*)?$",
       "status": 404
     },
@@ -25,7 +20,7 @@
       "handle": "miss"
     },
     {
-      "src": "^/api/(.+)(?:\\.(?:ts))$",
+      "src": "^/api/(.+)(?:\\.(?:js))$",
       "dest": "/api/$1",
       "check": true
     }
